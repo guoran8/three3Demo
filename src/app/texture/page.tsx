@@ -49,16 +49,36 @@ export default function TexturePage() {
       console.log('onError')
     }
     const textureLoader = new THREE.TextureLoader(loadingManager)
-    const colorTexture = textureLoader.load("/color.jpg")
-const alphaTexture = textureLoader.load('/alpha.jpg')
-const heightTexture = textureLoader.load('/height.jpg')
-const normalTexture = textureLoader.load('/normal.jpg')
-const ambientOcclusionTexture = textureLoader.load('/ambientOcclusion.jpg')
-const metalnessTexture = textureLoader.load('/metalness.jpg')
-const roughnessTexture = textureLoader.load('/roughness.jpg')
+    const colorTexture = textureLoader.load("/textures/minecraft.png")
+    const alphaTexture = textureLoader.load('/alpha.jpg')
+    const heightTexture = textureLoader.load('/height.jpg')
+    const normalTexture = textureLoader.load('/normal.jpg')
+    const ambientOcclusionTexture = textureLoader.load('/ambientOcclusion.jpg')
+    const metalnessTexture = textureLoader.load('/metalness.jpg')
+    const roughnessTexture = textureLoader.load('/roughness.jpg')
+
+    // colorTexture.repeat.x = 2
+    // colorTexture.repeat.y = 3 
+    // colorTexture.wrapS = THREE.MirroredRepeatWrapping
+    // colorTexture.wrapT = THREE.MirroredRepeatWrapping
+
+    // colorTexture.offset.x = 0.5
+    // colorTexture.offset.y = 0.5
+
+    // colorTexture.rotation = Math.PI / 4 
+    // colorTexture.center.x = 0.5
+    // colorTexture.center.y = 0.5
+
+    colorTexture.generateMipmaps = false
+    colorTexture.magFilter = THREE.NearestFilter
 
     const geometry = new THREE.BoxGeometry(1, 1, 1)
-    const material = new THREE.MeshBasicMaterial({ map: normalTexture})
+    // console.log("geometry", geometry.attributes.uv)
+    // const geometry = new THREE.SphereGeometry(1, 32, 32)
+    // const geometry = new THREE.ConeGeometry(1, 1, 12)
+    // const geometry = new THREE.TorusGeometry(1, 0.35, 32, 100)
+    const material = new THREE.MeshBasicMaterial({ map: colorTexture})
+    // material.wireframe = true
     const mesh = new THREE.Mesh(geometry, material)
     scene.add(mesh)
 
